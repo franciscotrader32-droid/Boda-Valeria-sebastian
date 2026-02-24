@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,120 +9,164 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #F8F5F0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #F8F5F0; color: #2D2D2D; }
         .font-serif { font-family: 'Playfair Display', serif; }
         
-        /* Pantalla de Bienvenida (Para activar música) */
+        /* Pantalla de Inicio */
         #welcome-overlay {
             position: fixed; inset: 0; background: #F8F5F0; z-index: 1000;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 1s ease;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
+        /* Animaciones de Scroll */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1.2s all cubic-bezier(0.4, 0, 0.2, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        /* Ajuste para imágenes en GitHub Pages */
-        img { object-fit: cover; width: 100%; height: 100%; }
-        .photo-frame { overflow: hidden; border-radius: 4px; background: #e2e2e2; }
+
+        /* Línea de Cuento (Historia) */
+        .story-line::before {
+            content: ''; position: absolute; left: 50%; width: 1px; height: 100%;
+            background: linear-gradient(to bottom, transparent, #C6A75E, transparent);
+            transform: translateX(-50%);
+        }
+        @media (max-width: 768px) { .story-line::before { left: 20px; } }
+
+        .img-story { width: 100%; height: 350px; object-fit: cover; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
     <div id="welcome-overlay">
-        <div class="text-center p-6">
-            <p class="tracking-[0.3em] uppercase text-[10px] mb-4 text-salvia">Bienvenida</p>
-            <h2 class="font-serif text-4xl text-oscuro mb-8 italic">Valeria & Sebastian</h2>
-            <button id="start-btn" class="bg-[#C6A75E] text-white px-8 py-3 rounded-full tracking-widest text-xs hover:scale-105 transition shadow-lg">
-                ABRIR INVITACIÓN
+        <div class="text-center p-6 space-y-6">
+            <div class="w-20 h-[1px] bg-dorado mx-auto"></div>
+            <h2 class="font-serif text-4xl italic">Valeria & Sebastian</h2>
+            <p class="tracking-[0.3em] text-[10px] uppercase text-gray-500">Un viaje que apenas comienza</p>
+            <button id="start-btn" class="mt-8 border border-[#C6A75E] text-[#C6A75E] px-10 py-3 rounded-full hover:bg-[#C6A75E] hover:text-white transition-all duration-500 tracking-widest text-xs">
+                ABRIR CUENTO
             </button>
         </div>
     </div>
 
     <audio id="bg-audio" loop>
+        <source src="./musica.mp3" type="audio/mpeg">
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
-    <main id="main-content" class="hidden">
+    <main id="main-content" class="hidden opacity-0 transition-opacity duration-1000">
         
-        <section class="relative h-screen flex items-center justify-center">
-            <div class="absolute inset-0">
-                <img src="./foto1.png" alt="Portada" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000'">
-            </div>
+        <header class="relative h-screen flex items-center justify-center overflow-hidden">
+            <img src="./foto1.png" class="absolute inset-0 w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000'">
             <div class="absolute inset-0 bg-black/30"></div>
-            <div class="relative text-center text-white z-10">
-                <h1 class="text-6xl md:text-9xl font-serif italic mb-4">Valeria & Sebastian</h1>
-                <p class="tracking-[0.5em] text-xs uppercase">18 de Octubre, 2026</p>
+            <div class="relative text-center text-white space-y-4">
+                <span class="block tracking-[0.5em] text-xs uppercase opacity-80">Nuestra Historia Comienza</span>
+                <h1 class="text-6xl md:text-9xl font-serif italic">Valeria & Sebastian</h1>
+                <p class="text-xl font-light">18 . 10 . 2026</p>
             </div>
-        </section>
+        </header>
 
-        <section class="py-24 px-6 text-center reveal">
-            <h2 class="font-serif text-3xl text-[#9CAF88] italic mb-6">Para: Perla Ramos</h2>
-            <p class="max-w-2xl mx-auto text-gray-600 leading-relaxed italic">
-                "Con el corazón lleno de amor y gratitud, queremos invitarte a ser parte de uno de los días más importantes de nuestras vidas."
-            </p>
-        </section>
+        <section class="py-24 px-6 max-w-6xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-serif text-4xl mb-4 italic text-[#9CAF88]">Érase una vez...</h2>
+                <p class="text-gray-500 text-sm">Acompañanos a recordar nuestros momentos más dulces</p>
+            </div>
 
-        <section class="py-12 px-4 max-w-6xl mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="photo-frame h-72 reveal"><img src="./foto2.png" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500'"></div>
-                <div class="photo-frame h-72 reveal"><img src="./foto3.png" onerror="this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=500'"></div>
-                <div class="photo-frame h-72 reveal"><img src="./foto4.png" onerror="this.src='https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=500'"></div>
-                <div class="photo-frame h-72 reveal"><img src="./foto5.png" onerror="this.src='https://images.unsplash.com/photo-1465495910483-0d674b179720?w=500'"></div>
-                <div class="photo-frame h-72 reveal"><img src="./foto6.png" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164883eeca48?w=500'"></div>
-                <div class="photo-frame h-72 reveal"><img src="./foto7.png" onerror="this.src='https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=500'"></div>
-                <div class="photo-frame h-72 reveal"><img src="./foto8.png" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=500'"></div>
-                <div class="photo-frame h-72 reveal"><img src="./foto1.png" onerror="this.src='https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=500'"></div>
+            <div class="relative story-line">
+                <div class="flex flex-col md:flex-row items-center mb-24 reveal">
+                    <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0">
+                        <img src="./foto2.png" class="img-story" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164883eeca48?w=800'">
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-12 text-center md:text-left">
+                        <span class="text-[#C6A75E] text-xs font-bold uppercase tracking-widest">Capítulo I</span>
+                        <h3 class="font-serif text-2xl my-3 italic">El Encuentro</h3>
+                        <p class="text-gray-600 italic leading-relaxed">Todo comenzó una tarde lluviosa en San Luis Potosí. Una cafetería, un libro compartido y una mirada que lo cambió todo.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row-reverse items-center mb-24 reveal">
+                    <div class="w-full md:w-1/2 md:pl-12 mb-8 md:mb-0">
+                        <img src="./foto3.png" class="img-story" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800'">
+                    </div>
+                    <div class="w-full md:w-1/2 md:pr-12 text-center md:text-right">
+                        <span class="text-[#C6A75E] text-xs font-bold uppercase tracking-widest">Capítulo II</span>
+                        <h3 class="font-serif text-2xl my-3 italic">Las Primeras Risas</h3>
+                        <p class="text-gray-600 italic leading-relaxed">Descubrimos que compartíamos más que gustos literarios; compartíamos el mismo sentido del humor y el amor por la aventura.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center mb-24 reveal">
+                    <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0">
+                        <img src="./foto4.png" class="img-story" onerror="this.src='https://images.unsplash.com/photo-1465495910483-0d674b179720?w=800'">
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-12 text-center md:text-left">
+                        <span class="text-[#C6A75E] text-xs font-bold uppercase tracking-widest">Capítulo III</span>
+                        <h3 class="font-serif text-2xl my-3 italic">Kilómetros Juntos</h3>
+                        <p class="text-gray-600 italic leading-relaxed">Viajes espontáneos y carreteras infinitas. Aprendimos que el destino no es un lugar, sino la persona que tienes al lado.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row-reverse items-center mb-24 reveal">
+                    <div class="w-full md:w-1/2 md:pl-12 mb-8 md:mb-0">
+                        <img src="./foto5.png" class="img-story" onerror="this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800'">
+                    </div>
+                    <div class="w-full md:w-1/2 md:pr-12 text-center md:text-right">
+                        <span class="text-[#C6A75E] text-xs font-bold uppercase tracking-widest">Capítulo IV</span>
+                        <h3 class="font-serif text-2xl my-3 italic">Creciendo Juntos</h3>
+                        <p class="text-gray-600 italic leading-relaxed">Pasaron 5 años. Entre retos y sueños, nos dimos cuenta de que ya no podíamos imaginar un futuro sin el otro.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center mb-24 reveal">
+                    <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0">
+                        <img src="./foto6.png" class="img-story" onerror="this.src='https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800'">
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-12 text-center md:text-left">
+                        <span class="text-[#C6A75E] text-xs font-bold uppercase tracking-widest">Capítulo V</span>
+                        <h3 class="font-serif text-2xl my-3 italic">La Propuesta</h3>
+                        <p class="text-gray-600 italic leading-relaxed">Con un "Sí" eterno, decidimos que era momento de sellar esta promesa frente a las personas que más amamos.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="py-24 bg-[#2D2D2D] text-white text-center px-6">
             <div class="reveal">
-                <h3 class="font-serif text-4xl mb-12 italic tracking-wide">¿Nos acompañas?</h3>
-                <a href="https://wa.me/527204519733?text=Hola+Sebastian+y+Valeria,+soy+Perla+Ramos+y+confirmo+mi+asistencia." 
-                   class="inline-block bg-[#9CAF88] px-12 py-5 rounded-full text-xs tracking-[0.3em] font-bold hover:bg-[#C6A75E] transition-all transform hover:scale-110 shadow-2xl">
-                    CONFIRMAR ASISTENCIA
+                <h3 class="font-serif text-4xl mb-4 italic">Perla Ramos</h3>
+                <p class="text-gray-400 mb-12 italic max-w-md mx-auto">"Tu presencia será el capítulo más importante de este día."</p>
+                <a href="https://wa.me/527204519733?text=Hola+Sebastian+y+Valeria,+soy+Perla+Ramos+y+confirmo+asistencia." 
+                   class="inline-block bg-[#9CAF88] px-12 py-5 rounded-full text-xs tracking-[0.3em] font-bold hover:bg-[#C6A75E] transition-all transform hover:scale-105 shadow-2xl">
+                    ESCRIBIR NUESTRA HISTORIA JUNTO A ELLOS
                 </a>
             </div>
         </section>
 
-        <footer class="py-12 bg-white text-center border-t border-marfil">
+        <footer class="py-12 text-center">
             <p class="font-serif text-2xl text-[#C6A75E] italic">Valeria & Sebastian</p>
-            <p class="text-[10px] tracking-widest text-gray-400 mt-4 uppercase">18.10.2026</p>
+            <p class="text-[9px] tracking-[0.5em] text-gray-400 mt-4 uppercase">18 . Octubre . 2026</p>
         </footer>
     </main>
 
     <script>
         lucide.createIcons();
-
-        const overlay = document.getElementById('welcome-overlay');
-        const startBtn = document.getElementById('start-btn');
-        const mainContent = document.getElementById('main-content');
         const audio = document.getElementById('bg-audio');
 
-        // Función para iniciar la experiencia
-        startBtn.addEventListener('click', () => {
-            // Reproducir música
-            audio.play().catch(error => console.log("Audio bloqueado"));
+        document.getElementById('start-btn').addEventListener('click', () => {
+            audio.play().catch(e => console.log("Audio Playback error"));
+            document.getElementById('welcome-overlay').style.opacity = '0';
             
-            // Ocultar bienvenida y mostrar contenido
-            overlay.style.opacity = '0';
             setTimeout(() => {
-                overlay.style.display = 'none';
-                mainContent.classList.remove('hidden');
-                initScrollReveal();
-            }, 1000);
+                document.getElementById('welcome-overlay').style.display = 'none';
+                const main = document.getElementById('main-content');
+                main.classList.remove('hidden');
+                setTimeout(() => main.style.opacity = '1', 50);
+                initObserver();
+            }, 1200);
         });
 
-        // Animación al hacer scroll
-        function initScrollReveal() {
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(e => {
-                    if(e.isIntersecting) e.target.classList.add('active');
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        function initObserver() {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+            }, { threshold: 0.15 });
+            document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
         }
     </script>
 </body>
