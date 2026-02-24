@@ -1,175 +1,87 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valeria & Sebastian | Nuestra Historia</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
+    <title>Valeria & Sebastian | Boda</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        marfil: '#F8F5F0',
-                        salvia: '#9CAF88',
-                        dorado: '#C6A75E',
-                        oscuro: '#2D2D2D',
-                    },
-                    fontFamily: {
-                        serif: ['Playfair Display', 'serif'],
-                        sans: ['Montserrat', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #F8F5F0; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); }
-        
-        /* Estilo para asegurar que las fotos se vean bien si fallan */
-        img { background-color: #eee; min-height: 50px; }
+        /* Placeholder en caso de error de imagen */
+        .img-error { background: #e5e7eb; display: flex; align-items: center; justify-content: center; position: relative; }
+        .img-error::after { content: 'Cargando archivo...'; font-size: 10px; color: #999; }
     </style>
 </head>
+<body>
 
-<body class="bg-marfil text-oscuro font-sans overflow-x-hidden">
-
-    <div class="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2">
-        <div id="music-msg" class="bg-white text-[10px] px-3 py-1 rounded-full shadow-sm text-salvia font-bold animate-bounce">
-            TOCA PARA ESCUCHAR ♫
-        </div>
-        <button id="toggleMusic" class="p-4 bg-salvia text-white rounded-full shadow-2xl hover:scale-110 transition-all flex items-center justify-center">
-            <i data-lucide="music" id="music-icon"></i>
+    <div class="fixed bottom-6 right-6 z-[100]">
+        <button id="playBtn" class="bg-[#9CAF88] text-white p-4 rounded-full shadow-2xl animate-bounce hover:scale-110 transition">
+            <i data-lucide="music"></i>
         </button>
-        <audio id="bg-audio" loop preload="auto">
+        <audio id="musica" loop>
             <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
         </audio>
     </div>
 
-    <header class="relative h-screen w-full flex items-center justify-center text-center overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] scale-105" 
-             style="background-image: url('./foto1.png'), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000');">
-        </div>
-        <div class="absolute inset-0 hero-overlay"></div>
-        
-        <div class="relative z-10 px-4">
-            <p class="text-white tracking-[0.4em] uppercase text-xs mb-6 opacity-90">Nuestra Historia Comienza</p>
-            <h1 class="text-6xl md:text-9xl text-white font-serif italic mb-8 drop-shadow-lg">Valeria & Sebastian</h1>
-            <div class="h-[1px] w-24 bg-dorado mx-auto mb-8"></div>
-            <p class="text-white text-xl font-light tracking-[0.2em]">18 DE OCTUBRE, 2026</p>
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <img src="./foto1.png" class="absolute inset-0 w-full h-full object-cover" onerror="this.parentElement.style.backgroundColor='#d1d5db'">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="relative text-center text-white px-4">
+            <h1 class="text-5xl md:text-8xl font-serif italic mb-4">Valeria & Sebastian</h1>
+            <p class="tracking-[0.5em] text-sm uppercase">18 de Octubre, 2026</p>
         </div>
     </header>
 
-    <section class="py-24 px-6 max-w-4xl mx-auto text-center reveal">
-        <h2 class="font-serif text-3xl md:text-5xl mb-8 text-salvia italic">Querida Perla Ramos</h2>
-        <p class="text-lg md:text-xl leading-relaxed text-gray-600 italic font-light">
-            "Con el corazón lleno de amor y gratitud, queremos invitarte a ser parte de uno de los días más importantes de nuestras vidas."
-        </p>
+    <section class="py-20 px-6 max-w-3xl mx-auto text-center reveal">
+        <h2 class="text-[#C6A75E] font-serif text-3xl mb-6 italic">Hola, Perla Ramos</h2>
+        <p class="text-gray-600 italic">"Con el corazón lleno de amor y gratitud, queremos invitarte a ser parte de uno de los días más importantes de nuestras vidas."</p>
     </section>
 
-    <section class="bg-salvia py-16 text-white text-center">
-        <div id="countdown" class="flex justify-center gap-6 md:gap-12">
-            <div><span id="days" class="text-4xl md:text-6xl font-light block">00</span><span class="text-[10px] uppercase tracking-widest">Días</span></div>
-            <div><span id="hours" class="text-4xl md:text-6xl font-light block">00</span><span class="text-[10px] uppercase tracking-widest">Horas</span></div>
-            <div><span id="minutes" class="text-4xl md:text-6xl font-light block">00</span><span class="text-[10px] uppercase tracking-widest">Mins</span></div>
-            <div><span id="seconds" class="text-4xl md:text-6xl font-light block">00</span><span class="text-[10px] uppercase tracking-widest">Segs</span></div>
+    <section class="py-10 px-4 max-w-6xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="reveal h-64 overflow-hidden rounded shadow"><img src="./foto2.png" class="w-full h-full object-cover hover:scale-110 transition duration-500" onerror="this.classList.add('img-error')"></div>
+            <div class="reveal h-64 overflow-hidden rounded shadow"><img src="./foto3.png" class="w-full h-full object-cover hover:scale-110 transition duration-500" onerror="this.classList.add('img-error')"></div>
+            <div class="reveal h-64 overflow-hidden rounded shadow"><img src="./foto4.png" class="w-full h-full object-cover hover:scale-110 transition duration-500" onerror="this.classList.add('img-error')"></div>
+            <div class="reveal h-64 overflow-hidden rounded shadow"><img src="./foto5.png" class="w-full h-full object-cover hover:scale-110 transition duration-500" onerror="this.classList.add('img-error')"></div>
+            <div class="reveal h-64 overflow-hidden rounded shadow"><img src="./foto6.png" class="w-full h-full object-cover hover:scale-110 transition duration-500" onerror="this.classList.add('img-error')"></div>
+            <div class="reveal h-64 overflow-hidden rounded shadow"><img src="./foto7.png" class="w-full h-full object-cover hover:scale-110 transition duration-500" onerror="this.classList.add('img-error')"></div>
+            <div class="reveal h-64 overflow-hidden rounded shadow"><img src="./foto8.png" class="w-full h-full object-cover hover:scale-110 transition duration-500" onerror="this.classList.add('img-error')"></div>
+            <div class="reveal h-64 overflow-hidden rounded shadow"><img src="./foto1.png" class="w-full h-full object-cover hover:scale-110 transition duration-500" onerror="this.classList.add('img-error')"></div>
         </div>
     </section>
 
-    <section class="py-24 px-6 bg-white">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <div class="reveal">
-                <img src="./foto2.png" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800'" 
-                     class="rounded-t-full w-full shadow-2xl border-[10px] border-marfil object-cover h-[500px]">
-            </div>
-            <div class="reveal">
-                <h2 class="font-serif text-4xl mb-6">Nuestra Historia</h2>
-                <p class="text-gray-600 leading-loose text-justify italic">
-                    Nos conocimos una tarde lluviosa en San Luis Potosí, cuando el destino decidió cruzar nuestros caminos en una cafetería del centro... Después de 5 años creciendo juntos, decidimos dar el siguiente paso.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-4 bg-marfil">
-        <div class="max-w-6xl mx-auto columns-2 md:columns-4 gap-4 space-y-4">
-            <img src="./foto3.png" onclick="openModal(this.src)" class="rounded shadow reveal hover:opacity-80 transition cursor-pointer" onerror="this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=60&w=500'">
-            <img src="./foto4.png" onclick="openModal(this.src)" class="rounded shadow reveal hover:opacity-80 transition cursor-pointer" onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=60&w=500'">
-            <img src="./foto5.png" onclick="openModal(this.src)" class="rounded shadow reveal hover:opacity-80 transition cursor-pointer" onerror="this.src='https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=60&w=500'">
-            <img src="./foto6.png" onclick="openModal(this.src)" class="rounded shadow reveal hover:opacity-80 transition cursor-pointer" onerror="this.src='https://images.unsplash.com/photo-1465495910483-0d674b179720?auto=format&fit=crop&q=60&w=500'">
-        </div>
-    </section>
-
-    <section class="py-24 bg-oscuro text-white text-center px-6">
-        <h2 class="font-serif text-4xl mb-8 italic">Confirma tu asistencia</h2>
-        <a href="https://wa.me/527204519733?text=Hola+confirmo+asistencia+Perla+Ramos" class="inline-block bg-salvia px-10 py-4 rounded-full tracking-[0.2em] font-bold hover:bg-white hover:text-salvia transition-all">
-            CONFIRMAR POR WHATSAPP
+    <section class="py-20 bg-[#2D2D2D] text-white text-center px-6 mt-10">
+        <h3 class="font-serif text-3xl mb-8 italic">¿Nos acompañas?</h3>
+        <a href="https://wa.me/527204519733?text=Hola+confirmo+asistencia+Perla+Ramos" class="inline-block bg-[#9CAF88] px-12 py-4 rounded-full font-bold tracking-widest hover:bg-[#C6A75E] transition">
+            CONFIRMAR ASISTENCIA
         </a>
     </section>
-
-    <footer class="py-12 bg-white text-center">
-        <p class="font-serif text-2xl text-dorado italic">Valeria & Sebastian</p>
-        <p class="text-[10px] tracking-widest text-gray-400 mt-4 uppercase">Diseño Exclusivo • 2026</p>
-    </footer>
-
-    <div id="modal" class="fixed inset-0 bg-black/95 z-[200] hidden items-center justify-center p-4" onclick="this.classList.add('hidden')">
-        <img id="modal-img" src="" class="max-h-full max-w-full rounded shadow-2xl">
-    </div>
 
     <script>
         lucide.createIcons();
 
-        // Control de Música Corregido
-        const audio = document.getElementById('bg-audio');
-        const btn = document.getElementById('toggleMusic');
-        const msg = document.getElementById('music-msg');
-        let playing = false;
-
+        // Control de música
+        const audio = document.getElementById('musica');
+        const btn = document.getElementById('playBtn');
         btn.addEventListener('click', () => {
-            if(!playing) {
-                audio.play().catch(e => console.log("Error de audio:", e));
-                msg.classList.add('hidden');
-                document.getElementById('music-icon').setAttribute('data-lucide', 'pause');
+            if (audio.paused) {
+                audio.play();
+                btn.classList.remove('animate-bounce');
             } else {
                 audio.pause();
-                document.getElementById('music-icon').setAttribute('data-lucide', 'music');
             }
-            playing = !playing;
-            lucide.createIcons();
         });
 
-        // Countdown
-        const target = new Date("2026-10-18T17:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = target - now;
-            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
-        }, 1000);
-
-        // Revelar al hacer scroll
-        const observer = new IntersectionObserver(entries => {
+        // Animación al scroll
+        const obs = new IntersectionObserver(entries => {
             entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
         });
-        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
-
-        // Galería
-        function openModal(src) {
-            document.getElementById('modal-img').src = src;
-            document.getElementById('modal').classList.remove('hidden');
-            document.getElementById('modal').classList.add('flex');
-        }
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
 </body>
 </html>
