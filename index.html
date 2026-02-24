@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valeria & Sebastian | Nuestra Historia Comienza</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        marfil: '#F8F5F0',
+                        salvia: '#9CAF88',
+                        dorado: '#C6A75E',
+                        oscuro: '#2D2D2D',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 2s ease-out forwards',
+                        'slide-up': 'slideUp 1.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        slideUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)); }
+        .parallax { background-attachment: fixed; background-position: center; background-size: cover; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        #music-control { z-index: 100; }
+        .gallery-img { cursor: pointer; transition: transform 0.4s ease; }
+        .gallery-img:hover { transform: scale(1.03); }
+    </style>
+</head>
+
+<body class="bg-marfil text-oscuro font-sans overflow-x-hidden">
+
+    <div id="music-control" class="fixed bottom-6 right-6 flex items-center gap-2">
+        <button id="toggleMusic" class="p-4 bg-salvia text-white rounded-full shadow-lg hover:bg-opacity-90 transition-all">
+            <i data-lucide="music"></i>
+        </button>
+        <audio id="bg-audio" loop>
+            <source src="https://s-te-amo-franco-de-vita.mp3.pm/" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <header class="relative h-screen w-full flex items-center justify-center text-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] scale-110 hover:scale-100" style="background-image: url('foto1.png');">
+            <div class="absolute inset-0 bg-stone-300 flex items-center justify-center -z-10">
+                <span class="text-stone-400">Valeria & Sebastian</span>
+            </div>
+        </div>
+        <div class="absolute inset-0 hero-overlay"></div>
+        
+        <div class="relative z-10 px-4 animate-fade-in">
+            <p class="text-white tracking-[0.3em] uppercase text-sm mb-4 font-light">Nuestra Historia Comienza</p>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl text-white font-serif italic mb-6">Valeria & Sebastian</h1>
+            <div class="h-[1px] w-24 bg-dorado mx-auto mb-6"></div>
+            <p class="text-white text-xl font-light">18 . 10 . 26</p>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white opacity-70">
+            <i data-lucide="chevron-down"></i>
+        </div>
+    </header>
+
+    <section class="py-24 px-6 max-w-4xl mx-auto text-center reveal">
+        <h2 class="font-serif text-3xl md:text-4xl mb-8 text-salvia italic">¡Hola, Perla Ramos!</h2>
+        <p class="text-lg leading-relaxed text-gray-600 italic">
+            "Con el corazón lleno de amor y gratitud, queremos invitarte a ser parte de uno de los días más importantes de nuestras vidas."
+        </p>
+    </section>
+
+    <section class="bg-salvia py-16 text-white text-center shadow-inner">
+        <div class="max-w-5xl mx-auto px-4">
+            <h3 class="font-serif text-2xl mb-10 tracking-widest uppercase">Faltan solo</h3>
+            <div class="grid grid-cols-4 gap-4 md:gap-8 max-w-2xl mx-auto">
+                <div>
+                    <span id="days" class="text-3xl md:text-5xl font-light block">00</span>
+                    <span class="text-xs uppercase tracking-tighter opacity-80">Días</span>
+                </div>
+                <div>
+                    <span id="hours" class="text-3xl md:text-5xl font-light block">00</span>
+                    <span class="text-xs uppercase tracking-tighter opacity-80">Horas</span>
+                </div>
+                <div>
+                    <span id="minutes" class="text-3xl md:text-5xl font-light block">00</span>
+                    <span class="text-xs uppercase tracking-tighter opacity-80">Minutos</span>
+                </div>
+                <div>
+                    <span id="seconds" class="text-3xl md:text-5xl font-light block">00</span>
+                    <span class="text-xs uppercase tracking-tighter opacity-80">Segundos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white overflow-hidden">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="relative reveal">
+                <img src="foto2.png" alt="Nosotros" class="rounded-t-full w-full object-cover shadow-2xl border-[15px] border-marfil">
+                <div class="absolute -bottom-8 -right-8 w-48 h-48 border-2 border-dorado -z-10 hidden md:block"></div>
+            </div>
+            <div class="reveal">
+                <span class="text-dorado font-bold tracking-widest text-sm uppercase">Nuestra Trayectoria</span>
+                <h2 class="font-serif text-4xl mt-4 mb-8">El Destino nos unió</h2>
+                <p class="text-gray-600 leading-loose text-justify">
+                    Nos conocimos una tarde lluviosa en San Luis Potosí, cuando el destino decidió cruzar nuestros caminos en una cafetería del centro. Lo que comenzó como una conversación casual sobre libros, se convirtió en tardes interminables de risas, viajes espontáneos y sueños compartidos. Después de 5 años creciendo juntos, decidimos dar el siguiente paso y prometer acompañarnos toda la vida.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-marfil">
+        <div class="max-w-5xl mx-auto text-center mb-16 reveal">
+            <h2 class="font-serif text-4xl mb-4">Detalles del Evento</h2>
+            <div class="h-[1px] w-16 bg-salvia mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            <div class="bg-white p-12 text-center shadow-sm hover:shadow-xl transition-shadow reveal">
+                <div class="flex justify-center mb-6 text-salvia">
+                    <i data-lucide="church" size="40"></i>
+                </div>
+                <h3 class="font-serif text-2xl mb-4">Recepción y Brindis</h3>
+                <p class="text-gray-500 mb-2">Domingo, 18 de Octubre 2026</p>
+                <p class="text-gray-500 mb-6 font-semibold">5:00 PM</p>
+                <p class="font-serif text-xl mb-6">La Princesa</p>
+                <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Boda+Valeria+y+Sebastian&dates=20261018T170000Z/20261019T020000Z&details=Acompáñanos+a+celebrar+nuestra+boda.&location=La+Princesa,+San+Luis+Potosí" target="_blank" class="inline-block border border-dorado text-dorado px-8 py-3 rounded-full hover:bg-dorado hover:text-white transition-colors uppercase text-xs tracking-widest">
+                    Añadir a Calendario
+                </a>
+            </div>
+
+            <div class="reveal h-full min-h-[400px]">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3695.123!2d-101.0!3d22.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDA5JzAwLjAiTiAxMDHCsDAwJzAwLjAiVw!5e0!3m2!1ses!2smx!4v1620000000000!5m2!1ses!2smx" 
+                class="w-full h-full rounded-sm shadow-md border-0 grayscale hover:grayscale-0 transition-all duration-700" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="columns-1 md:columns-3 lg:columns-4 gap-4 space-y-4">
+                <img src="foto3.png" onclick="openModal(this.src)" class="gallery-img w-full rounded-sm shadow reveal" alt="Gallery">
+                <img src="foto4.png" onclick="openModal(this.src)" class="gallery-img w-full rounded-sm shadow reveal" alt="Gallery">
+                <img src="foto5.png" onclick="openModal(this.src)" class="gallery-img w-full rounded-sm shadow reveal" alt="Gallery">
+                <img src="foto6.png" onclick="openModal(this.src)" class="gallery-img w-full rounded-sm shadow reveal" alt="Gallery">
+                <img src="foto7.png" onclick="openModal(this.src)" class="gallery-img w-full rounded-sm shadow reveal" alt="Gallery">
+                <img src="foto8.png" onclick="openModal(this.src)" class="gallery-img w-full rounded-sm shadow reveal" alt="Gallery">
+                <img src="foto1.png" onclick="openModal(this.src)" class="gallery-img w-full rounded-sm shadow reveal" alt="Gallery">
+                <img src="foto2.png" onclick="openModal(this.src)" class="gallery-img w-full rounded-sm shadow reveal" alt="Gallery">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-oscuro text-white text-center">
+        <div class="max-w-3xl mx-auto px-6 reveal">
+            <h2 class="font-serif text-4xl mb-8">¿Nos acompañas?</h2>
+            <p class="text-gray-400 mb-12 italic">"Tu presencia será el regalo más grande para nosotros. Acompáñanos a celebrar el amor, la amistad y el comienzo de esta nueva etapa juntos."</p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-16">
+                <div class="p-4 bg-white rounded-lg inline-block">
+                    <div id="qrcode"></div>
+                    <p class="text-oscuro text-[10px] mt-2 font-bold uppercase tracking-tighter">Acceso Invitado</p>
+                </div>
+                
+                <a href="https://wa.me/527204519733?text=¡Hola!+Soy+Perla+Ramos.+Confirmo+con+mucho+gusto+mi+asistencia+a+la+boda+de+Valeria+y+Sebastian." 
+                   target="_blank" 
+                   class="bg-salvia text-white px-12 py-5 rounded-full text-lg tracking-widest hover:scale-105 transition-transform shadow-xl">
+                    CONFIRMAR ASISTENCIA
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-marfil text-center border-t border-stone-200">
+        <p class="font-serif text-2xl text-salvia mb-2 italic">Valeria & Sebastian</p>
+        <p class="text-xs tracking-widest text-stone-400 uppercase">18.10.2026 • San Luis Potosí</p>
+    </footer>
+
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-95 z-[200] hidden items-center justify-center p-4 overflow-hidden" onclick="closeModal()">
+        <button class="absolute top-6 right-6 text-white"><i data-lucide="x"></i></button>
+        <img id="modal-img" src="" class="max-h-full max-w-full object-contain animate-fade-in" alt="Full Image">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        // Icons
+        lucide.createIcons();
+
+        // Music Logic
+        const audio = document.getElementById('bg-audio');
+        const musicBtn = document.getElementById('toggleMusic');
+        let isPlaying = false;
+
+        musicBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                musicBtn.innerHTML = '<i data-lucide="music"></i>';
+            } else {
+                audio.play();
+                musicBtn.innerHTML = '<i data-lucide="pause"></i>';
+            }
+            isPlaying = !isPlaying;
+            lucide.createIcons();
+        });
+
+        // Countdown Logic
+        const targetDate = new Date("2026-10-18T17:30:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const gap = targetDate - now;
+
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const d = Math.floor(gap / day);
+            const h = Math.floor((gap % day) / hour);
+            const m = Math.floor((gap % hour) / minute);
+            const s = Math.floor((gap % minute) / second);
+
+            document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+            document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+            document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+            document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Reveal Animations
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Modal Gallery
+        function openModal(src) {
+            const modal = document.getElementById('modal');
+            const img = document.getElementById('modal-img');
+            img.src = src;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // QR Code
+        new QRCode(document.getElementById("qrcode"), {
+            text: "INV-VAL-SEB-PERLA-2026",
+            width: 120,
+            height: 120,
+            colorDark : "#2D2D2D",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+</html>
