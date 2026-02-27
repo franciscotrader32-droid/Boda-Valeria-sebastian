@@ -32,12 +32,19 @@
 
     <style>
         body { background-color: #F8F5F0; overflow-x: hidden; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Montserrat', sans-serif; }
+        
+        /* Animaciones */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .fade-out { opacity: 0; pointer-events: none; transition: opacity 1.5s ease; }
+        
+        /* Efectos Visuales */
         .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
         .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); }
         
+        /* Guía de Navegación */
         @keyframes bounce-scroll {
             0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
             40% {transform: translateY(-10px);}
@@ -45,12 +52,14 @@
         }
         .animate-bounce-scroll { animation: bounce-scroll 2s infinite; }
 
+        /* Timeline Story */
         .story-timeline::before {
             content: ''; position: absolute; left: 50%; width: 1px; height: 100%;
             background: #C6A75E; opacity: 0.3; transform: translateX(-50%);
         }
         @media (max-width: 768px) { .story-timeline::before { left: 20px; } }
 
+        /* Resaltado Calendario */
         .btn-calendar-glow {
             box-shadow: 0 0 15px rgba(198, 167, 94, 0.4);
             border: 1px solid #C6A75E;
@@ -91,8 +100,8 @@
                  onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000'">
             <div class="absolute inset-0 hero-overlay"></div>
             <div class="relative z-10 text-center text-white px-4">
-                <p class="uppercase tracking-[0.5em] text-[10px] mb-6 opacity-90 reveal">Nuestra Historia Comienza</p>
-                <h1 class="text-5xl md:text-9xl font-serif italic mb-8 reveal">Valeria & Sebastian</h1>
+                <p class="uppercase tracking-[0.5em] text-[10px] md:text-xs mb-6 opacity-90 reveal">Nuestra Historia Comienza</p>
+                <h1 class="text-5xl md:text-9xl font-serif italic mb-8 drop-shadow-2xl reveal">Valeria & Sebastian</h1>
                 <p class="text-lg md:text-2xl font-light tracking-[0.2em] mb-12 reveal">18 . MARZO . 2026</p>
                 
                 <div id="scroll-hint" class="animate-bounce-scroll flex flex-col items-center gap-2 reveal">
@@ -114,6 +123,7 @@
 
         <section class="py-16 bg-salvia text-marfil text-center">
             <div class="max-w-4xl mx-auto px-4 reveal">
+                <h3 class="uppercase tracking-[0.3em] text-[10px] mb-10 opacity-80 font-semibold">Estamos a punto de comenzar</h3>
                 <div id="countdown" class="grid grid-cols-4 gap-4 md:gap-8">
                     <div><span id="days" class="text-3xl md:text-6xl font-serif">00</span><p class="text-[10px] uppercase mt-2 opacity-70 font-semibold">Días</p></div>
                     <div><span id="hours" class="text-3xl md:text-6xl font-serif">00</span><p class="text-[10px] uppercase mt-2 opacity-70 font-semibold">Hrs</p></div>
@@ -129,14 +139,82 @@
                     <h2 class="font-serif text-4xl italic text-oscuro">Capítulos de un Sueño</h2>
                     <div class="h-[1px] w-16 bg-dorado mx-auto mt-4"></div>
                 </div>
+
                 <div class="space-y-24">
                     <div class="flex flex-col md:flex-row items-center reveal">
                         <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0">
-                            <img src="./foto2.png" class="w-full h-[450px] object-cover rounded shadow-xl" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164883eeca48?w=800'">
+                            <img src="./foto2.png" class="w-full h-[450px] object-cover rounded shadow-xl" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1522673607200-164883eeca48?w=800'">
                         </div>
                         <div class="w-full md:w-1/2 md:pl-12 text-center md:text-left">
                             <span class="text-dorado uppercase tracking-widest text-xs font-bold">El Comienzo</span>
-                            <p class="mt-4 text-gray-600 italic leading-relaxed text-lg">Nos conocimos una tarde lluviosa en San Luis Potosí.</p>
+                            <p class="mt-4 text-gray-600 italic leading-relaxed text-lg">Nos conocimos una tarde lluviosa en San Luis Potosí, en una pequeña cafetería del centro.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row-reverse items-center reveal">
+                        <div class="w-full md:w-1/2 md:pl-12 mb-8 md:mb-0">
+                            <img src="./foto3.png" class="w-full h-[450px] object-cover rounded shadow-xl" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1516589174184-c685266e430c?w=800'">
+                        </div>
+                        <div class="w-full md:w-1/2 md:pr-12 text-center md:text-right">
+                            <span class="text-dorado uppercase tracking-widest text-xs font-bold">La Conexión</span>
+                            <p class="mt-4 text-gray-600 italic leading-relaxed text-lg">Una conversación casual sobre libros se convirtió en tardes de risas interminables.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center reveal">
+                        <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0">
+                            <img src="./foto4.png" class="w-full h-[450px] object-cover rounded shadow-xl" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800'">
+                        </div>
+                        <div class="w-full md:w-1/2 md:pl-12 text-center md:text-left">
+                            <span class="text-dorado uppercase tracking-widest text-xs font-bold">Aventuras</span>
+                            <p class="mt-4 text-gray-600 italic leading-relaxed text-lg">Viajes espontáneos que fortalecieron nuestro lazo cada día más.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row-reverse items-center reveal">
+                        <div class="w-full md:w-1/2 md:pl-12 mb-8 md:mb-0">
+                            <img src="./foto5.png" class="w-full h-[450px] object-cover rounded shadow-xl" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1465495910483-0d674b179720?w=800'">
+                        </div>
+                        <div class="w-full md:w-1/2 md:pr-12 text-center md:text-right">
+                            <span class="text-dorado uppercase tracking-widest text-xs font-bold">Sueños</span>
+                            <p class="mt-4 text-gray-600 italic leading-relaxed text-lg">Compartimos metas y construimos un futuro donde siempre estamos juntos.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center reveal">
+                        <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0">
+                            <img src="./foto6.png" class="w-full h-[450px] object-cover rounded shadow-xl" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800'">
+                        </div>
+                        <div class="w-full md:w-1/2 md:pl-12 text-center md:text-left">
+                            <span class="text-dorado uppercase tracking-widest text-xs font-bold">Cinco Años</span>
+                            <p class="mt-4 text-gray-600 italic leading-relaxed text-lg">Crecimos de la mano, aprendiendo el valor de la compañía incondicional.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row-reverse items-center reveal">
+                        <div class="w-full md:w-1/2 md:pl-12 mb-8 md:mb-0">
+                            <img src="./foto7.png" class="w-full h-[450px] object-cover rounded shadow-xl" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800'">
+                        </div>
+                        <div class="w-full md:w-1/2 md:pr-12 text-center md:text-right">
+                            <span class="text-dorado uppercase tracking-widest text-xs font-bold">La Propuesta</span>
+                            <p class="mt-4 text-gray-600 italic leading-relaxed text-lg">Decidimos que una vida no era suficiente para nuestro amor.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center reveal">
+                        <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0">
+                            <img src="./foto8.png" class="w-full h-[450px] object-cover rounded shadow-xl" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800'">
+                        </div>
+                        <div class="w-full md:w-1/2 md:pl-12 text-center md:text-left">
+                            <span class="text-dorado uppercase tracking-widest text-xs font-bold">El Compromiso</span>
+                            <p class="mt-4 text-gray-600 italic leading-relaxed text-lg">Hoy sellamos nuestra promesa frente a quienes más amamos.</p>
                         </div>
                     </div>
                 </div>
@@ -147,86 +225,177 @@
             <div class="max-w-6xl mx-auto">
                 <div class="grid md:grid-cols-2 gap-16 items-center">
                     <div class="reveal">
-                        <h3 class="font-serif text-4xl mb-8 italic text-oscuro">Ceremonia & Recepción</h3>
-                        <p class="font-bold text-salvia mb-2 text-xl italic">Salón La Princesa</p>
-                        <p class="text-gray-500 mb-8">18 de Marzo, 2026 | 5:00 PM</p>
-                        
-                        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Boda+Valeria+%26+Sebastian&dates=20260318T230000Z/20260319T060000Z&location=La+Princesa,+San+Luis+Potosí" 
-                           target="_blank" class="btn-calendar-glow inline-block w-full py-4 bg-dorado text-white text-xs uppercase tracking-widest font-bold rounded shadow-lg text-center mb-10">
-                            Agendar en Google Calendar
-                        </a>
+                        <h3 class="font-serif text-4xl mb-8 italic">Ceremonia & Recepción</h3>
+                        <div class="space-y-8 text-gray-600">
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="map-pin" class="text-dorado mt-1"></i>
+                                <div>
+                                    <p class="font-bold text-oscuro">Lugar</p>
+                                    <p class="text-lg">Salón La Princesa</p>
+                                    <p class="text-sm">San Luis Potosí, México</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="clock" class="text-dorado mt-1"></i>
+                                <div>
+                                    <p class="font-bold text-oscuro">Fecha & Hora</p>
+                                    <p class="text-lg">18 de Marzo de 2026</p>
+                                    <p class="text-sm">5:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div class="bg-marfil p-6 rounded-lg grid grid-cols-2 gap-4">
-                            <a href="uber://?action=setPickup&dropoff[latitude]=22.127161611784317&dropoff[longitude]=-100.95158617640517" class="flex items-center justify-center gap-2 p-3 bg-black text-white rounded text-[10px] font-bold uppercase tracking-tighter transition hover:scale-105">
-                                <i data-lucide="car" size="14"></i> Uber
+                        <div class="mt-12">
+                            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Boda+Valeria+%26+Sebastian&dates=20260318T230000Z/20260319T060000Z&details=Acompáñanos+a+nuestro+gran+día.&location=La+Princesa,+San+Luis+Potosí" 
+                               target="_blank" 
+                               class="btn-calendar-glow inline-block w-full md:w-auto px-12 py-4 bg-dorado text-white text-xs uppercase tracking-widest font-bold rounded shadow-lg text-center">
+                                Agendar en Google Calendar
                             </a>
-                            <a href="didi-passenger://" class="flex items-center justify-center gap-2 p-3 bg-orange-500 text-white rounded text-[10px] font-bold uppercase tracking-tighter transition hover:scale-105">
-                                <i data-lucide="car-front" size="14"></i> DiDi
-                            </a>
+                        </div>
+
+                        <div class="mt-12 bg-marfil p-8 rounded-lg">
+                            <h4 class="text-xs uppercase tracking-widest font-bold mb-6 text-center opacity-70">Llega con facilidad</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <a href="uber://?action=setPickup&dropoff[latitude]=22.127161611784317&dropoff[longitude]=-100.95158617640517" class="flex flex-col items-center gap-2 group">
+                                    <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center transition group-hover:scale-110 shadow-md">
+                                        <i data-lucide="car"></i>
+                                    </div>
+                                    <span class="text-[9px] font-bold uppercase tracking-tighter">Uber</span>
+                                </a>
+                                <a href="didi-passenger://" class="flex flex-col items-center gap-2 group">
+                                    <div class="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center transition group-hover:scale-110 shadow-md">
+                                        <i data-lucide="car-front"></i>
+                                    </div>
+                                    <span class="text-[9px] font-bold uppercase tracking-tighter">DiDi</span>
+                                </a>
+                                <a href="indrive://" class="flex flex-col items-center gap-2 group">
+                                    <div class="w-12 h-12 bg-salvia text-white rounded-full flex items-center justify-center transition group-hover:scale-110 shadow-md">
+                                        <i data-lucide="navigation"></i>
+                                    </div>
+                                    <span class="text-[9px] font-bold uppercase tracking-tighter">inDrive</span>
+                                </a>
+                                <a href="https://maps.app.goo.gl/nXcM8CGZqDPtGDYL8" target="_blank" class="flex flex-col items-center gap-2 group">
+                                    <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center transition group-hover:scale-110 shadow-md">
+                                        <i data-lucide="map"></i>
+                                    </div>
+                                    <span class="text-[9px] font-bold uppercase tracking-tighter">Waze/Maps</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <div class="reveal rounded-lg overflow-hidden shadow-2xl h-96 grayscale transition duration-1000 hover:grayscale-0">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m11!1m3!1d3696.062013061405!2d-100.95377488504847!3d22.127161611784317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1700000000000!5m2!1ses-419!2smx" 
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3695.9703292733107!2d-100.95409672398107!3d22.12710694914944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842aa246db228f09%3A0xfd323900209d13a4!2sLa%20Princesa%20Salon%20De%20Eventos!5e0!3m2!1ses-419!2smx!4v1772006720362!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-32 bg-marfil px-4">
+            <div class="max-w-6xl mx-auto">
+                <h3 class="font-serif text-3xl text-center mb-16 italic text-salvia">Momentos Compartidos</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="galeria">
+                    <img src="./foto2.png" onclick="openModal(this.src)" class="h-64 w-full object-cover cursor-pointer hover:scale-[1.03] transition duration-500 rounded shadow reveal" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=500'">
+                    <img src="./foto3.png" onclick="openModal(this.src)" class="h-64 w-full object-cover cursor-pointer hover:scale-[1.03] transition duration-500 rounded shadow reveal" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500'">
+                    <img src="./foto4.png" onclick="openModal(this.src)" class="h-64 w-full object-cover cursor-pointer hover:scale-[1.03] transition duration-500 rounded shadow reveal" onerror="this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=500'">
+                    <img src="./foto5.png" onclick="openModal(this.src)" class="h-64 w-full object-cover cursor-pointer hover:scale-[1.03] transition duration-500 rounded shadow reveal" onerror="this.src='https://images.unsplash.com/photo-1465495910483-0d674b179720?w=500'">
                 </div>
             </div>
         </section>
 
         <section class="py-32 bg-oscuro text-white px-6">
             <div class="max-w-4xl mx-auto text-center reveal">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="bg-white/5 p-8 rounded border border-white/10 text-left">
-                        <h4 class="text-xs uppercase tracking-widest font-bold mb-8 text-dorado">RSVP</h4>
+                <h3 class="font-serif text-4xl mb-6 italic text-dorado">¿Nos acompañas?</h3>
+                <p class="text-gray-400 mb-16 italic font-light">Tu presencia será el regalo más grande para nosotros. Acompáñanos a celebrar el amor, la amistad y el comienzo de esta nueva etapa juntos.</p>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center text-left">
+                    <div class="bg-white/5 p-8 rounded border border-white/10">
+                        <h4 class="text-xs uppercase tracking-widest font-bold mb-8 text-dorado">Personaliza tu asistencia</h4>
+                        
                         <div class="space-y-6">
-                            <select id="num-pases" class="w-full bg-transparent border-b border-dorado/50 py-2 outline-none text-sm appearance-none">
-                                <option value="1" class="text-oscuro">1 Pase</option>
-                                <option value="2" class="text-oscuro">2 Pases</option>
-                            </select>
-                            <input id="alergias" type="text" placeholder="Alergias o comentarios" class="w-full bg-transparent border-b border-dorado/50 py-2 outline-none text-sm placeholder:opacity-30">
-                            <button onclick="enviarWhatsApp()" class="w-full py-4 bg-salvia text-white rounded font-bold text-[10px] uppercase tracking-widest hover:bg-dorado transition-colors">
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold mb-2 opacity-60">Pases Confirmados</label>
+                                <select id="num-pases" class="w-full bg-transparent border-b border-dorado/50 py-2 outline-none text-sm appearance-none">
+                                    <option value="1" class="text-oscuro">1 Pase</option>
+                                    <option value="2" class="text-oscuro">2 Pases</option>
+                                    <option value="3" class="text-oscuro">3 Pases</option>
+                                    <option value="4" class="text-oscuro">4 Pases</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold mb-2 opacity-60">Alergias o Comentarios</label>
+                                <input id="alergias" type="text" placeholder="Ej. Celíaco, Vegano..." class="w-full bg-transparent border-b border-dorado/50 py-2 outline-none text-sm placeholder:opacity-30">
+                            </div>
+                            <button onclick="enviarWhatsApp()" class="w-full py-4 bg-salvia text-white rounded font-bold text-[10px] uppercase tracking-widest hover:bg-dorado transition-colors shadow-lg">
                                 Confirmar Asistencia
                             </button>
                         </div>
                     </div>
+
                     <div class="flex flex-col items-center gap-6">
                         <div class="bg-white p-4 rounded shadow-2xl">
                             <div id="qrcode"></div>
                         </div>
-                        <p class="text-xs font-bold uppercase tracking-widest text-dorado tracking-[0.3em]">Laura Silva</p>
+                        <div class="text-center">
+                            <p class="text-xs font-bold uppercase tracking-widest text-dorado">Pase Digital</p>
+                            <p class="text-[10px] opacity-40 uppercase">Presentar en recepción</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <footer class="py-16 text-center border-t border-dorado/10">
-            <h2 class="font-serif text-2xl italic text-dorado">V & S</h2>
+            <h2 class="font-serif text-2xl italic text-dorado">Valeria & Sebastian</h2>
             <p class="text-[9px] tracking-[0.5em] text-gray-400 mt-4 uppercase">18 . 03 . 2026</p>
         </footer>
+
     </main>
+
+    <div id="modal" class="fixed inset-0 z-[200] bg-black/95 hidden items-center justify-center p-4 cursor-pointer" onclick="closeModal()">
+        <img id="modal-img" src="" class="max-h-full max-w-full rounded shadow-2xl scale-95 transition duration-500 ease-out opacity-0">
+    </div>
 
     <script>
         lucide.createIcons();
+
+        // Variables de entorno
         const overlay = document.getElementById('welcome-overlay');
         const content = document.getElementById('content');
         const audio = document.getElementById('musica-fondo');
         const btnAbrir = document.getElementById('btn-abrir');
+        const audioControl = document.getElementById('audio-control');
 
+        // 1. ABRIR INVITACIÓN
         btnAbrir.addEventListener('click', () => {
-            audio.play().catch(e => console.log("Audio block bypass"));
+            audio.play().catch(e => console.log("Audio interaction required"));
             overlay.classList.add('fade-out');
             setTimeout(() => {
                 overlay.style.display = 'none';
                 content.classList.remove('invisible');
-                document.getElementById('audio-control').classList.remove('hidden');
+                audioControl.classList.remove('hidden');
                 initCountdown();
                 initReveal();
                 initQR();
             }, 1000);
         });
 
+        // 2. AUDIO TOGGLE
+        let isPlaying = true;
+        document.getElementById('toggle-audio').addEventListener('click', () => {
+            const icon = document.getElementById('music-icon');
+            if (isPlaying) {
+                audio.pause();
+                icon.setAttribute('data-lucide', 'music-2');
+            } else {
+                audio.play();
+                icon.setAttribute('data-lucide', 'music');
+            }
+            isPlaying = !isPlaying;
+            lucide.createIcons();
+        });
+
+        // 3. CONTADOR
         function initCountdown() {
             const target = new Date("2026-03-08T17:30:00-06:00").getTime();
             setInterval(() => {
@@ -240,6 +409,7 @@
             }, 1000);
         }
 
+        // 4. REVEAL SCROLL
         function initReveal() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -249,18 +419,48 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
+        // 5. QR DINÁMICO
         function initQR() {
             new QRCode(document.getElementById("qrcode"), {
-                text: "INV-VAL-SEB-LAURA-SILVA-2026",
-                width: 120, height: 120,
-                colorDark : "#2D2D2D", colorLight : "#ffffff"
+                text: "INV-VAL-SEB-LAURA-SILVA-ID0318",
+                width: 120,
+                height: 120,
+                colorDark : "#2D2D2D",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
             });
         }
 
+        // 6. MODAL GALERÍA
+        function openModal(src) {
+            const modal = document.getElementById('modal');
+            const img = document.getElementById('modal-img');
+            img.src = src;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                img.classList.remove('scale-95', 'opacity-0');
+                img.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const img = document.getElementById('modal-img');
+            img.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 500);
+            document.body.style.overflow = 'auto';
+        }
+
+        // 7. WHATSAPP RSVP
         function enviarWhatsApp() {
             const pases = document.getElementById('num-pases').value;
             const alergias = document.getElementById('alergias').value || "Ninguna";
-            const texto = `¡Hola! Soy Laura Silva. Confirmo mi asistencia.%0A🎫 Pases: ${pases}%0A🍽️ Alergias: ${alergias}`;
+            const texto = `¡Hola! Soy Laura Silva. Confirmo mi asistencia con alegría.%0A%0A🎫 Pases: ${pases}%0A🍽️ Alergias/Comentarios: ${alergias}%0A%0A¡Nos vemos en su boda!`;
             window.open(`https://wa.me/527204519733?text=${texto}`, '_blank');
         }
     </script>
