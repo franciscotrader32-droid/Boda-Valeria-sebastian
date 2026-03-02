@@ -1,0 +1,165 @@
+Actúa como un estudio creativo digital premium especializado en invitaciones web de boda elegantes y comerciales.
+Genera una invitación web completa en UN SOLO archivo index.html lista para producción.
+
+==========================
+REGLAS CRÍTICAS DE EXPERIENCIA (ESTUDIO PREMIUM)
+
+ESTRUCTURA DE ENTRADA (OBLIGATORIO): Debe incluir un "Welcome Overlay" (Pantalla de inicio de seda) con un botón elegante "Abrir Invitación". Al hacer clic, debe disparar el audio y revelar el contenido con una transición suave (Fade Out). Esto es imperativo para evadir el bloqueo de autoplay de los navegadores.
+
+NARRATIVA VISUAL (ESTILO CUENTO): La sección de "Historia de la Pareja" debe diseñarse como un camino emocional (Timeline alternado en desktop).
+⚠️ MUY IMPORTANTE:
+
+En MOBILE el diseño debe ser 100% vertical (imagen arriba y texto abajo).
+
+Las imágenes NUNCA deben ocupar media pantalla.
+
+Deben usar w-full, object-cover y proporción fija (aspect-video o h-[500px]).
+
+NO usar layout 50/50 en móvil.
+
+Alternado solo desde md: en adelante.
+
+ESTRUCTURA EDITABLE OBLIGATORIA:
+El código debe incluir una sección claramente identificable al inicio llamada:
+
+<!-- ========================== --> <!-- ZONA 100% EDITABLE CLIENTE --> <!-- ========================== -->
+
+Dentro deben estar agrupados:
+
+A) HISTORIA (separada así):
+const historia = [
+{
+imagen: "./foto1.png",
+titulo: "Nuestro primer encuentro",
+texto: "Texto corto emocional..."
+},
+...
+];
+
+(8 objetos claramente numerados foto1 a foto8)
+
+B) GALERÍA MOMENTOS FAVORITOS:
+const galeria = [
+"./foto1.png",
+"./foto2.png",
+"./foto3.png",
+"./foto4.png",
+"./foto5.png",
+"./foto6.png",
+"./foto7.png",
+"./foto8.png"
+];
+
+C) DATOS GENERALES DEL EVENTO como un objeto:
+const datosEvento = {
+nombres: "Valeria & Sebastián",
+invitado: "Bernarda Patricia",
+fechaTexto: "03 de Marzo de 2026",
+fechaISO: "2026-03-4T17:30:00",
+lugar: "La Princesa",
+direccionMaps: "https://maps.app.goo.gl/xT2CjyAEav9pGLN19
+",
+telefonoRSVP: "+527204519733",
+mensajeBienvenida: "...",
+mensajeFinal: "...",
+musica: "./TE_AMO_-FRANCO_DE_VITA.mp3"
+};
+
+🔥 TODO debe generarse dinámicamente con JavaScript usando estos arrays/objetos.
+NO escribir manualmente las 8 secciones en HTML.
+Deben renderizarse con map() o forEach() para que cambiar cliente sea solo editar esa zona.
+
+RUTAS DE ARCHIVOS: Usa rutas relativas "./archivo.png" compatibles con GitHub Pages.
+
+RESILIENCIA DE IMÁGENES:
+Todas las imágenes generadas dinámicamente deben incluir:
+onerror="this.src='https://source.unsplash.com/1600x900/?wedding,love
+'"
+
+DISEÑO:
+
+Estilo minimalista, romántico y moderno.
+
+Mobile First obligatorio.
+
+Espacios amplios (whitespace).
+
+Tipografía refinada.
+
+Intersection Observer para animaciones reveal suaves.
+
+Código modular y comentado.
+
+NO BACKEND:
+Solo HTML5, TailwindCSS CDN y JavaScript puro.
+
+==========================
+DATOS DEL EVENTO (PLACEHOLDERS)
+
+Nombre del evento: Nuestra Historia Comienza
+Nombres de los novios: Valeria & Sebastián
+Nombre del invitado: Bernarda Patricia
+Fecha del evento: 18 de Octubre de 2026
+Hora: 5:00 PM
+Lugar: La Princesa
+Dirección Google Maps (embed): <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3695.9703306382285!2d-100.95639271364773!3d22.127106897111087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842aa246db228f09%3A0xfd323900209d13a4!2sLa%20Princesa%20Salon%20De%20Eventos!5e0!3m2!1ses-419!2smx!4v1772425175959!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+Historia de la pareja: Nos conocimos una tarde lluviosa en San Luis Potosí, cuando el destino decidió cruzar nuestros caminos en una cafetería del centro. Lo que comenzó como una conversación casual sobre libros, se convirtió en tardes interminables de risas, viajes espontáneos y sueños compartidos. Después de 5 años creciendo juntos, decidimos dar el siguiente paso y prometer acompañarnos toda la vida..
+Mensaje de bienvenida: Con el corazón lleno de amor y gratitud, queremos invitarte a ser parte de uno de los días más importantes de nuestras vidas.
+Mensaje final emotivo: Tu presencia será el regalo más grande para nosotros. Acompáñanos a celebrar el amor, la amistad y el comienzo de esta nueva etapa juntos.
+Paleta de colores base:
+Blanco marfil (#F8F5F0)
+Verde salvia (#9CAF88)
+Dorado suave (#C6A75E)
+
+Tipografía sugerida:
+Playfair Display (títulos)
+Montserrat (texto general)
+
+Link música fondo: ./TE_AMO_-FRANCO_DE_VITA.mp3
+Fecha contador ISO: 2026-03-4T17:30:00
+Teléfono WhatsApp RSVP:+527204519733
+
+==========================
+FUNCIONALIDADES OBLIGATORIAS
+
+Hero elegante con overlay suave usando ./foto1.png.
+
+Mensaje personalizado dinámico usando datosEvento.invitado.
+
+Historia generada dinámicamente desde el array historia (8 pasos).
+
+Contador regresivo en tiempo real usando datosEvento.fechaISO.
+
+Sección Detalles con botón "Agregar a Google Calendar".
+
+Mapa embebido responsive con filtro grayscale.
+
+Galería generada dinámicamente desde el array galeria.
+
+Modal fullscreen al hacer clic en imágenes.
+
+RSVP botón dinámico que incluya nombre del invitado en mensaje WhatsApp.
+
+Código QR generado dinámicamente con qrcode.js CDN.
+
+Control de audio flotante que aparece después de abrir invitación.
+
+==========================
+ENTREGA
+
+Un solo archivo index.html completo.
+
+Código limpio, comentado y modular.
+
+Mobile First real (sin imágenes cortadas).
+
+Todo editable desde la zona marcada.
+
+Sin texto fuera del bloque de código.
+
+Sin cortes de código.
+
+Listo para copiar y pegar en GitHub Pages.
+
+Devuelve únicamente el código completo.
